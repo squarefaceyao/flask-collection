@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="root@39.100.142.42:22">
+    <serverData>
+      <paths name="aliyun2">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/flask_collecion" local="$PROJECT_DIR$" web="/flask_collecion" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@39.100.142.42:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_364" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

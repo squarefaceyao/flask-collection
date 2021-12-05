@@ -27,3 +27,12 @@ MYSQL_DATABASE = 'test123'
 #                                db='test123',
 #                                charset='utf8mb4',
 #                                cursorclass=pymysql.cursors.DictCursor)
+
+
+## plantes Mysql数据库
+
+# MYSQL_HOST = 'localhost'
+# MYSQL_PORT = 3306
+# MYSQL_USER = 'root'
+# MYSQL_PASSWORD = 'y13453951660J'
+# MYSQL_DATABASE = 'flasktest'

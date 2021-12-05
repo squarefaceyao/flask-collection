@@ -29,14 +29,21 @@ def start_ad():
     RF = request.get_json()['RF']
     type = request.get_json()['type']
     RF = int(RF)
+    resData = {
+        "resCode": 0, #非0即错误1
+        "message": 'stop'
+
+    }
+
     if request.method == 'POST' and type == 'submit':
         thr.resume()
         thr.run(table_name, RF)
+        return json.dumps(resData)
     if request.method == 'POST' and type == 'pause':
         print('Stop collection')
         thr.pause()
 
-    return '采集完成，请返回主页面'
+        return json.dumps(resData)
 
 
 
@@ -49,7 +56,8 @@ def headers():
             {"id":0, "text": 'Home', "url":'/'},
             {"id":1, "text": 'Collection', "url":'/collection'},
             {"id":2, "text": 'Datasets', "url":'/signal_tables'},
-            {"id":3, "text": 'Help', "url":'/help'},
+            {"id":3, "text": 'Help', "url":'/helps'},
+            {"id":4, "text": 'Test', "url":'/test'},
 
         ],# 数据位置，一般为数组
         "message": '对本次请求的说明'
@@ -141,6 +149,149 @@ def show_myecharts(table_name):
     }
     return resData
 
+@app.route('/showDynamic/<table_name>',methods=['POST'])
+def showDynamic(table_name):
+    import numpy as np
+    print('success:',table_name)
+    xdatas,ad1,ad2,ad3,ad4,ad5,ad6,ad7,ad8=get_line(table_name)
+    num=100 # 返回固定长度。
+    # 不够100返回全部，超出100先是最新数值。前段轮训时间是1000ms，在前段175行进行修改，collect。vue
+    if len(ad1) < num:
+        res1, res2, res3, res4, res5, res6, res7, res8= [], [], [], [], [], [], [], [],
+
+        for idx in range(len(xdatas)):
+            # value = json.dumps(ad1[idx])
+            # name = json.dumps(xdatas[idx])
+            data = {
+                "name": xdatas[idx],
+                # "value": [xdatas[idx][11:],ad1[idx]],
+                "value": [idx,ad1[idx]],
+            }
+            res1.append(data)
+
+            data2 = {
+                "name": xdatas[idx],
+                "value": [idx,ad2[idx]],
+            }
+            res2.append(data2)
+
+            data3 = {
+                "name": xdatas[idx],
+                "value": [idx,ad3[idx]],
+            }
+            res3.append(data3)
+
+            data4 = {
+                "name": xdatas[idx],
+                "value": [idx,ad4[idx]],
+            }
+            res4.append(data4)
+
+            data5 = {
+                "name": xdatas[idx],
+                "value": [idx,ad5[idx]],
+            }
+            res5.append(data5)
+
+            data6 = {
+                "name": xdatas[idx],
+                "value": [idx,ad6[idx]],
+            }
+            res6.append(data6)
+
+            data7 = {
+                "name": xdatas[idx],
+                "value": [idx,ad7[idx]],
+            }
+            res7.append(data7)
+
+            data8 = {
+                "name": xdatas[idx],
+                "value": [idx,ad8[idx]],
+            }
+            res8.append(data8)
+
+        resData = {
+            "resCode": 0,  # 非0即错误1
+            "data": [res1, res2, res3, res4, res5, res6, res7, res8],
+            "message": '本次请求的说明'
+
+        }
+        return resData
+
+
+    else:
+        res1, res2, res3, res4, res5, res6, res7, res8= [], [], [], [], [], [], [], [],
+
+        xdatas = xdatas[-num:]
+        ad1 = ad1[-num:]
+        ad2 = ad2[-num:]
+        ad3 = ad3[-num:]
+        ad4 = ad4[-num:]
+        ad5 = ad5[-num:]
+        ad6 = ad6[-num:]
+        ad7 = ad7[-num:]
+        ad8 = ad8[-num:]
+        for idx in range(len(xdatas)):
+            data = {
+                "name": xdatas[idx],
+                "value": [idx,ad1[idx]],
+            }
+            res1.append(data)
+
+            data2 = {
+                "name": xdatas[idx],
+                "value": [idx,ad2[idx]],
+            }
+            res2.append(data2)
+
+            data3 = {
+                "name": xdatas[idx],
+                "value": [idx,ad3[idx]],
+            }
+            res3.append(data3)
+
+            data4 = {
+                "name": xdatas[idx],
+                "value": [idx,ad4[idx]],
+            }
+            res4.append(data4)
+
+            data5 = {
+                "name": xdatas[idx],
+                "value": [idx,ad5[idx]],
+            }
+            res5.append(data5)
+
+            data6 = {
+                "name": xdatas[idx],
+                "value": [idx,ad6[idx]],
+            }
+            res6.append(data6)
+
+            data7 = {
+                "name": xdatas[idx],
+                "value": [idx,ad7[idx]],
+            }
+            res7.append(data7)
+
+            data8 = {
+                "name": xdatas[idx],
+                "value": [idx,ad8[idx]],
+            }
+            res8.append(data8)
+
+
+        resData = {
+            "resCode": 0,  # 非0即错误1
+            "data": [res1, res2, res3, res4, res5, res6, res7, res8],
+            "message": '本次请求的说明'
+
+        }
+        return resData
+
+
+
 @app.route('/download/<table_name>',methods=['POST'])
 def download(table_name):
     """
@@ -170,5 +321,5 @@ def download(table_name):
 
 if __name__ == '__main__':
     print(__name__)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
