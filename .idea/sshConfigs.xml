@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="10.2.205.208" id="352bf336-f179-474b-ad73-46280acbdafe" port="22" customName="aliyun2" nameFormat="CUSTOM" username="pi">
+        <option name="customName" value="aliyun2" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

@@ -2,12 +2,11 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="8030a1f9-3932-467d-a233-8049e12774ea" name="aliyun2" url="http://39.100.142.42">
-        <fileTransfer host="39.100.142.42" port="22" rootFolder="/root" accessType="SFTP">
+      <webServer id="10259660-b2fa-435c-81e9-a1dbe792816d" name="树莓派">
+        <fileTransfer accessType="SFTP" host="10.2.205.208" port="22" sshConfigId="352bf336-f179-474b-ad73-46280acbdafe" sshConfig="aliyun2">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
-          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>

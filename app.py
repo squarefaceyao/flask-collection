@@ -154,7 +154,7 @@ def showDynamic(table_name):
     import numpy as np
     print('success:',table_name)
     xdatas,ad1,ad2,ad3,ad4,ad5,ad6,ad7,ad8=get_line(table_name)
-    num=100 # 返回固定长度。
+    num=200 # 返回固定长度。
     # 不够100返回全部，超出100先是最新数值。前段轮训时间是1000ms，在前段175行进行修改，collect。vue
     if len(ad1) < num:
         res1, res2, res3, res4, res5, res6, res7, res8= [], [], [], [], [], [], [], [],
